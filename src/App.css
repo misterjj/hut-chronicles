@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+#home {
+    background-image: url("assets/cabane.jpg");
+    background-position: center center;
+    background-size: cover;
+}
+
+.anton-regular {
+    font-family: "Anton", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.anton-bold {
+    font-family: "Anton", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.page-container {
+    position: relative;
+    transition: transform 0.5s ease-in-out;
+    transform: tranzincY(0);
+    min-height: 100vh;
+    width: 100%;
+}
+
+.page-exit {
+    transform: tranzincY(-100vh);
+}
+
+@keyframes slideInFromBottom {
+    0% {
+        transform: tranzincY(100vh);
+    }
+    100% {
+        transform: tranzincY(0);
+    }
+}
+
+.page-container:not(.page-exit) {
+    animation: slideInFromBottom 0.5s ease-in-out;
+}
