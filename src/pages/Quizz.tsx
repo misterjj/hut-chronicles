@@ -1,7 +1,8 @@
-import { Page } from "../App.tsx";
+import {Page} from "../App.tsx";
 import {useState} from "react";
 import {questions} from "../data/Questions.tsx";
 import {Archetype} from "../data/Archetype.tsx";
+import { ArrowLongLeftIcon } from '@heroicons/react/24/outline'
 
 interface QuizzProps {
     goToPage: (page: Page) => void;
@@ -14,20 +15,18 @@ export const Quizz = ({goToPage, setArchetype}: QuizzProps) => {
     const [answers, setAnswers] = useState({});
 
     const renderProgressBar = () => {
+        const percentage = Math.floor(((currentQuestion - 1)  / 5) * 100);
         return (
-            <div className="flex justify-between items-center mb-6 mx-24">
-                {[1, 2, 3, 4, 5].map((step) => (
-                    <div
-                        key={step}
-                        className={`w-8 h-8 rounded-full flex items-center justify-center select-none
-                      ${step < currentQuestion ? 'bg-red-950 text-white' :
-                            step === currentQuestion ? 'bg-red-800 ring-red-950' :
-                                'bg-zinc-700 text-zinc-400'}`}
-                    >
-                        {step}
+            <>
+                <div className="w-full h-3 rounded-full bg-zinc-800 mb-3">
+                    <div className="h-3 rounded-full bg-zinc-100 relative transition-all duration-300" style={{ width: percentage + "%" }}>
+                        <span className="absolute right-0 -top-6 translate-x-1/2 text-nowrap text-sm text-white/50"> {percentage} %</span>
                     </div>
-                ))}
-            </div>
+                </div>
+                <div className="text-white/50">
+                    Question {currentQuestion}/5
+                </div>
+            </>
         );
     };
 
@@ -48,7 +47,7 @@ export const Quizz = ({goToPage, setArchetype}: QuizzProps) => {
     };
 
     const determineArchetype = () => {
-        const counts = { A: 0, B: 0, C: 0, D: 0, E: 0 };
+        const counts = {A: 0, B: 0, C: 0, D: 0, E: 0};
 
         Object.values(answers).forEach(answer => {
             counts[answer]++;
@@ -84,15 +83,17 @@ export const Quizz = ({goToPage, setArchetype}: QuizzProps) => {
 
     return (
         <>
-            <div className="container mx-auto py-12 px-4">
-                <h1 className="text-4xl font-bold mb-8 text-center text-red-800">
-                    Quel aventurier es-tu ?
-                </h1>
-                <div className="bg-zinc-800 rounded-lg p-6 max-w-4xl mx-auto shadow-xl">
-                    {renderProgressBar()}
+            <div id="quizz" className="container mx-auto py-12 px-4">
+                <div className="head h-64 rounded-lg w-full mb-12 relative">
+                    <h1 className="text-4xl font-bold absolute bottom-8 left-8 anton-regular">
+                        Quel aventurier es-tu ?
+                    </h1>
+                </div>
+                {renderProgressBar()}
+                <div className="max-w-4xl mx-auto">
 
                     <div className="question-container">
-                        <h3 className="text-2xl font-bold mb-6 text-center">
+                        <h3 className="text-2xl font-bold mt-3 mb-6 text-center">
                             {questions[currentQuestion - 1].question}
                         </h3>
 
@@ -101,30 +102,26 @@ export const Quizz = ({goToPage, setArchetype}: QuizzProps) => {
                                 <button
                                     key={option.value}
                                     onClick={() => handleAnswer(currentQuestion, option.value)}
-                                    className={`w-full text-left p-4 rounded-lg transition-all duration-200 cursor-pointer 
+                                    className={`w-3/4 mx-auto block text-center p-4 rounded-lg transition-all duration-200 cursor-pointer 
                               ${answers[currentQuestion] === option.value
                                         ? 'bg-red-800 text-white'
-                                        : 'bg-zinc-700 hover:bg-zinc-600 text-white'}`}
+                                        : 'bg-zinc-800 hover:bg-zinc-600 text-white'}`}
                                 >
                                     {option.label}
                                 </button>
                             ))}
                         </div>
 
-                        <div className="flex justify-between mt-8 items-center">
+                        <div className="flex justify-between mt-8 items-center w-3/4 mx-auto">
                             {currentQuestion > 1 && (
                                 <button
                                     onClick={goToPreviousQuestion}
-                                    className="bg-zinc-700/50 hover:bg-zinc-700 text-white/50 hover:text-white font-bold py-3 px-6 rounded-lg flex items-center transition-all duration-300 cursor-pointer"
+                                    className="text-white/50 hover:text-white rounded-lg flex items-center transition-all duration-300 cursor-pointer"
                                 >
-                                    Question précédente
+                                    <ArrowLongLeftIcon className="size-5 me-3"/> Question précédente
                                 </button>
                             )}
                             {currentQuestion === 1 && <div></div>}
-
-                            <div className="text-red-800 font-bold">
-                                Question {currentQuestion}/5
-                            </div>
                         </div>
                     </div>
                 </div>

@@ -60,7 +60,7 @@ function App() {
 
     return (
         <>
-            <div className="min-h-screen bg-zinc-900 text-white overflow-hidden">
+            <div className="min-h-screen bg-zinc-950 text-white overflow-hidden">
                 <div className={pageClasses}>
                     {currentPage === Page.home && (
                         <Home goToPage={goToPage}/>
