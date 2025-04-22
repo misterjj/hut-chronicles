@@ -1,6 +1,6 @@
 import {Page} from "../App.tsx";
 import {useState} from "react";
-import {questions} from "../data/Questions.tsx";
+import {AnswerType, questions} from "../data/Questions.tsx";
 import {Archetype} from "../data/Archetype.tsx";
 import { ArrowLongLeftIcon } from '@heroicons/react/24/outline'
 
@@ -10,9 +10,11 @@ interface QuizzProps {
 }
 
 
+type AnswersState = Record<number, AnswerType>;
+
 export const Quizz = ({goToPage, setArchetype}: QuizzProps) => {
     const [currentQuestion, setCurrentQuestion] = useState(1);
-    const [answers, setAnswers] = useState({});
+    const [answers, setAnswers] = useState<AnswersState>({});
 
     const renderProgressBar = () => {
         const percentage = Math.floor(((currentQuestion - 1)  / 5) * 100);
@@ -30,7 +32,7 @@ export const Quizz = ({goToPage, setArchetype}: QuizzProps) => {
         );
     };
 
-    const handleAnswer = (questionId, answer) => {
+    const handleAnswer = (questionId: number, answer: AnswerType): void => {
         setAnswers({
             ...answers,
             [questionId]: answer,
@@ -41,12 +43,12 @@ export const Quizz = ({goToPage, setArchetype}: QuizzProps) => {
             setCurrentQuestion(questionId + 1);
         } else {
             // Terminer le quiz et déterminer l'archétype
-            const result = determineArchetype();
+            setArchetype(determineArchetype());
             goToPage(Page.archetype);
         }
     };
 
-    const determineArchetype = () => {
+    const determineArchetype = (): Archetype  => {
         const counts = {A: 0, B: 0, C: 0, D: 0, E: 0};
 
         Object.values(answers).forEach(answer => {
@@ -63,16 +65,14 @@ export const Quizz = ({goToPage, setArchetype}: QuizzProps) => {
             }
         });
 
-        const archetypes = {
-            A: Archetype.BARD,
-            B: Archetype.WARRIOR,
-            C: Archetype.MAGE,
-            D: Archetype.PALADIN,
-            E: Archetype.ROGUE
-        };
-
-        setArchetype(archetypes[maxType]);
-        return archetypes[maxType];
+        switch (maxType) {
+            case "A": return Archetype.BARD
+            case "B": return Archetype.WARRIOR
+            case "C": return Archetype.MAGE
+            case "D": return Archetype.PALADIN
+            case "E": return Archetype.ROGUE
+            default: return Archetype.BARD;
+        }
     };
 
     const goToPreviousQuestion = () => {

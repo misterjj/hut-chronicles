@@ -8,11 +8,22 @@ interface HomeProps {
 }
 
 export const Archetype = ({goToPage, archetype}: HomeProps) => {
+    const getClass = (archetype: ArchetypeEnum): string => {
+        switch (archetype) {
+            case ArchetypeEnum.BARD: return 'bard'
+            case ArchetypeEnum.WARRIOR: return 'warrior'
+            case ArchetypeEnum.MAGE: return 'mage'
+            case ArchetypeEnum.PALADIN: return 'paladin'
+            case ArchetypeEnum.ROGUE: return 'rogue'
+        }
+    }
+
+
     return (
         <>
             <div className="container mx-auto py-12 px-4">
                 <div className="flex gap-4 items-center">
-                    <div className="archetype-illustration w-125 shrink-0"></div>
+                    <div className={"archetype-illustration w-125 shrink-0 " + getClass(archetype)}></div>
                     <div className="grow">
                         <h1 className="text-3xl font-bold mb-8 text-center block anton-bold uppercase">
                             Tu es un <span className="text-red-800 text-4xl">{archetype}</span>

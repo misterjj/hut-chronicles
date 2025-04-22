@@ -1,5 +1,6 @@
 import {Page, PlayerInfo} from "../App.tsx";
 import {Archetype} from "../data/Archetype.tsx";
+import {FormEvent} from "react";
 
 interface HomeProps {
     goToPage: (page: Page) => void;
@@ -10,7 +11,7 @@ interface HomeProps {
 
 export const Character = ({goToPage, archetype, playerInfo, setPlayerInfo}: HomeProps) => {
 
-    const submitCharacterInfo = (e) => {
+    const submitCharacterInfo = (e: FormEvent<HTMLFormElement>) : void => {
         e.preventDefault();
         if (playerInfo.playerName && playerInfo.characterName && playerInfo.companions >= 0) {
             goToPage(Page.recap);
@@ -22,7 +23,7 @@ export const Character = ({goToPage, archetype, playerInfo, setPlayerInfo}: Home
     return (
         <>
             <div className="container mx-auto py-12 px-4">
-                <h1 className="text-4xl font-bold mb-8 text-center text-red-300">
+                <h1 className="text-4xl font-bold mb-8 text-center anton-bold">
                     Fiche de personnage
                 </h1>
                 <div className="bg-zinc-800 rounded-lg p-8 max-w-2xl mx-auto shadow-xl">

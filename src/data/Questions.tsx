@@ -1,4 +1,15 @@
-export const questions = [
+export type AnswerType = 'A' | 'B' | 'C' | 'D' | 'E';
+
+interface Question {
+    id: number
+    question: string
+    options : {
+        value: AnswerType,
+        label: string
+    }[]
+}
+
+export const questions: Question[] = [
     {
         id: 1,
         question: "Quand vous pensez à la soirée à venir, qu'est-ce qui vous attire le plus ?",

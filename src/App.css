@@ -22,6 +22,27 @@
     background-size: cover;
 }
 
+.archetype-illustration.warrior {
+    background-image: url("assets/archetype/warrior.jpg");
+}
+
+.archetype-illustration.bard {
+    background-image: url("assets/archetype/bard.jpg");
+}
+
+.archetype-illustration.mage {
+    background-image: url("assets/archetype/mage.jpg");
+}
+
+.archetype-illustration.paladin {
+    background-image: url("assets/archetype/paladin.jpg");
+}
+
+.archetype-illustration.rogue {
+    background-image: url("assets/archetype/rogue.jpg");
+}
+
+
 .anton-regular {
     font-family: "Anton", sans-serif;
     font-weight: 400;
