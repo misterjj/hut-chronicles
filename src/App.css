@@ -79,3 +79,7 @@
 .page-container:not(.page-exit) {
     animation: slideInFromBottom 0.5s ease-in-out;
 }
+
+#dice-roller > div {
+    pointer-events: none!important;
+}

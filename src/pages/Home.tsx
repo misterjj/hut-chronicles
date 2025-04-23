@@ -1,4 +1,5 @@
 import { Page } from "../App.tsx";
+import DiceRoller from "../components/DiceRoller.tsx";
 
 interface HomeProps {
     goToPage: (page: Page) => void;
@@ -27,6 +28,7 @@ export const Home = ({ goToPage }: HomeProps) => {
                     </button>
                 </div>
             </div>
+            <DiceRoller/>
         </>
     )
 }
