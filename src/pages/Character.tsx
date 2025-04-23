@@ -1,6 +1,7 @@
 import {Page, PlayerInfo} from "../App.tsx";
 import {Archetype} from "../data/Archetype.tsx";
 import {FormEvent} from "react";
+import DiceRoller from "../components/DiceRoller.tsx";
 
 interface HomeProps {
     goToPage: (page: Page) => void;
@@ -23,6 +24,7 @@ export const Character = ({goToPage, archetype, playerInfo, setPlayerInfo}: Home
     return (
         <>
             <div className="container mx-auto py-12 px-4">
+                <DiceRoller/>
                 <h1 className="text-4xl font-bold mb-8 text-center anton-bold">
                     Fiche de personnage
                 </h1>

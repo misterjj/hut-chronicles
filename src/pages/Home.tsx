@@ -28,7 +28,6 @@ export const Home = ({ goToPage }: HomeProps) => {
                     </button>
                 </div>
             </div>
-            <DiceRoller/>
         </>
     )
 }
