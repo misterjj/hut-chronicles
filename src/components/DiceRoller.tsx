@@ -13,18 +13,6 @@ interface DiceProps {
     throwFactor: number,
 }
 
-function Floor() {
-    return (
-        <RigidBody type="fixed">
-            <mesh
-                position={[0, 0, 0]}>
-                <boxGeometry args={[100, 100, 0.1]}/>
-                <meshStandardMaterial color={'hotpink'} opacity={0} transparent={true}/>
-            </mesh>
-        </RigidBody>
-    )
-}
-
 function Walls() {
     const {viewport} = useThree();
 
@@ -85,7 +73,7 @@ function Dice(props: DiceProps) {
     useEffect(() => {
         const rand = 0.8 + Math.random() * 0.4;
         setTimeout(() => {
-            if (rigidBody.current) {
+            if (null !== rigidBody.current) {
                 // A one-off "push"
                 rigidBody.current.addForce({
                     x: -2 * rand * props.throwFactor,
@@ -95,8 +83,8 @@ function Dice(props: DiceProps) {
 
                 // A one-off torque rotation
                 rigidBody.current.addTorque({
-                    x: 0.5 * rand * props.throwFactor,
-                    y: 0.2 * rand * props.throwFactor,
+                    x: -0.5 * rand * props.throwFactor,
+                    y: -0.2 * rand * props.throwFactor,
                     z: 0
                 }, true);
                 setTimeout(() => {
@@ -121,7 +109,7 @@ const DiceRoller = () => {
     const d8 = useLoader(GLTFLoader, '/d8.gltf')
     const d10 = useLoader(GLTFLoader, '/d10.gltf')
 
-    const [windowSize, setWindowSize] = useState({width: window.innerWidth, height: window.innerHeight});
+    const [, setWindowSize] = useState({width: window.innerWidth, height: window.innerHeight});
 
     // Gérer le redimensionnement de la fenêtre
     useEffect(() => {
@@ -148,7 +136,7 @@ const DiceRoller = () => {
                         <Dice model={d6} position={new THREE.Vector3(0, -5, 7)}
                               rotation={new THREE.Euler(95, 100, 0)} scale={0.22} throwFactor={1.5}/>
                         <Dice model={d8} position={new THREE.Vector3(-0.5, -8, 3)}
-                              rotation={new THREE.Euler(45, 30, 75)} scale={0.3} throwFactor={1}/>
+                              rotation={new THREE.Euler(45, 30, 75)} scale={0.3} throwFactor={1.5}/>
                         <Dice model={d10} position={new THREE.Vector3(-0.5, -8, 5)}
                               rotation={new THREE.Euler(15, 90, 75)} scale={0.4} throwFactor={0.7}/>
                         <Dice model={d10} position={new THREE.Vector3(-4, -10, 5)}
