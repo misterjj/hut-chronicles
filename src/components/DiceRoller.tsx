@@ -108,6 +108,7 @@ const DiceRoller = () => {
     const d6 = useLoader(GLTFLoader, '/d6.gltf')
     const d8 = useLoader(GLTFLoader, '/d8.gltf')
     const d10 = useLoader(GLTFLoader, '/d10.gltf')
+    const d10_2 = useLoader(GLTFLoader, '/d10-2.gltf')
 
     const [, setWindowSize] = useState({width: window.innerWidth, height: window.innerHeight});
 
@@ -139,7 +140,7 @@ const DiceRoller = () => {
                               rotation={new THREE.Euler(45, 30, 75)} scale={0.3} throwFactor={1.5}/>
                         <Dice model={d10} position={new THREE.Vector3(-0.5, -8, 5)}
                               rotation={new THREE.Euler(15, 90, 75)} scale={0.4} throwFactor={0.7}/>
-                        <Dice model={d10} position={new THREE.Vector3(-4, -10, 5)}
+                        <Dice model={d10_2} position={new THREE.Vector3(-4, -10, 5)}
                               rotation={new THREE.Euler(35, 60, 75)} scale={0.4} throwFactor={0.7}/>
                         <Dice model={d20} position={new THREE.Vector3(-0.5, -6, 6.5)}
                               rotation={new THREE.Euler(5, 45, 0)} scale={0.4} throwFactor={1.5}/>
