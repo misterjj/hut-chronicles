@@ -47,14 +47,6 @@ function Walls() {
                 </mesh>
             </RigidBody>
 
-            {/* Mur arrière */}
-            {/*<RigidBody type="fixed">*/}
-            {/*    <mesh position={[0, -height / 2, depth / 2]}>*/}
-            {/*        <boxGeometry args={[width, thickness, 1]}/>*/}
-            {/*        <meshStandardMaterial opacity={0} transparent={true}/>*/}
-            {/*    </mesh>*/}
-            {/*</RigidBody>*/}
-
             {/* Mur avant */}
             <RigidBody type="fixed">
                 <mesh position={[0, height / 2, depth / 2]}>
@@ -71,7 +63,7 @@ function Dice(props: DiceProps) {
     const rigidBody = useRef<RapierRigidBody>(null);
 
     useEffect(() => {
-        const rand = 0.8 + Math.random() * 0.4;
+        const rand = 1 + Math.random() * 0.4;
         setTimeout(() => {
             if (null !== rigidBody.current) {
                 // A one-off "push"

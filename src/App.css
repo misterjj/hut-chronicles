@@ -14,6 +14,24 @@
     }
 }
 
+#characterSheet {
+    background-image: url("assets/table.jpg");
+    background-position: center center;
+    background-size: cover;
+
+    .sheet {
+        background-image: url("assets/sheet.png");
+        background-position: center center;
+        background-size: cover;
+    }
+
+    .patrick {
+        font-family: "Patrick Hand SC", cursive;
+        font-weight: 400;
+        font-style: normal;
+    }
+}
+
 .archetype-illustration {
     width: 500px;
     height: 800px;
