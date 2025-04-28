@@ -170,7 +170,7 @@ export const Character = ({goToPage, archetype, playerInfo, setPlayerInfo}: Home
 
     return (
         <>
-            <div id="characterSheet" className="relative h-screen w-full bg-blue-500">
+            <div id="characterSheet" className="relative h-screen w-full overflow-hidden">
                 <DiceRoller/>
                 <form
                     className="sheet absolute w-[800px] bg-white h-[1131px] transition-all duration-800 ease-in-out text-gray-500"

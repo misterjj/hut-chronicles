@@ -22,8 +22,8 @@ export interface PlayerInfo {
 }
 
 function App() {
-    const [currentPage, setCurrentPage] = useState(Page.character);
-    const [archetype, setArchetype] = useState(ArchetypeEnum.BARD);
+    const [currentPage, setCurrentPage] = useState(Page.home);
+    const [archetype, setArchetype] = useState(ArchetypeEnum.WARRIOR);
     const [playerInfo, setPlayerInfo] = useState({
         playerName: "",
         characterName: "",
